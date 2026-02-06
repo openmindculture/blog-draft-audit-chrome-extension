@@ -4,7 +4,9 @@ This Chrome extension helps content creators and editors improve their blog draf
 
 This is a work in progress, provided as open source software without any warranty. Use at your own risk. Feel free to suggest features, open issues and pull requests on GitHub.
 
-It's originally intended to facilitate writing technical and other blog posts on WordPress, similar to the Yoast WP SEO plugin but more specific to my needs on not limited to one platform, which is why this is implemented as a browser extension, not as a CMS extension, and why it can be adapted to other blogging platforms and browsers as well. Blog platforms to test with include WordPress, DEV.to, Medium, Substack, Coder Legion, Open Mind Culture, and others web app offering to publish arbitrary lengthy user generated content either in HTML, markdown or rich text format. 
+It's originally intended to facilitate writing technical and other blog posts on WordPress, similar to the Yoast WP SEO plugin but more specific to my needs on not limited to one platform, which is why this is implemented as a browser extension, not as a CMS extension, and why it can be adapted to other blogging platforms and browsers as well. Blog platforms to test with include WordPress, DEV.to, Medium, Substack, Coder Legion, Open Mind Culture, and others web app offering to publish arbitrary lengthy user generated content either in HTML, markdown or rich text format.
+
+Proof of concept / predecessor: [wp-content-stats-meta-box](https://github.com/openmindculture/wp-content-stats-meta-box), a simple plugin to analyze WP blog drafts on the go. Yoast SEO and Voyant might be additional inspirations while still trying to keep the service lightweight and unobtrusive.
 
 ## TODO
 
