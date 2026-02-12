@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Substack Post Analyzer",
+  "version": "1.0.0",
+  "description": "Analyzes Substack post drafts with word count and link metrics",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.substack.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "host_permissions": [
+    "https://*.substack.com/*"
+  ]
+}

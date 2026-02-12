@@ -1,36 +1,122 @@
-# Blog Draft Audit Chrome Extension
+# Substack Post Analyzer - Chrome Extension
 
-This Chrome extension helps content creators and editors improve their blog drafts by integrating an audit checklist alongside any blogging platform's interface that can check in real time while writing or on pressing a button. Configurable checklist items can include SEO best practices, readability checks, number of links and signals. Optionally we can specify external auditing services to review the draft content after actively submitting it for review in a new browser tab or window.
+A Chrome extension that helps you analyze your Substack post drafts with real-time metrics.
 
-This is a work in progress, provided as open source software without any warranty. Use at your own risk. Feel free to suggest features, open issues and pull requests on GitHub.
+## Features
 
-It's originally intended to facilitate writing technical and other blog posts on WordPress, similar to the Yoast WP SEO plugin but more specific to my needs on not limited to one platform, which is why this is implemented as a browser extension, not as a CMS extension, and why it can be adapted to other blogging platforms and browsers as well. Blog platforms to test with include WordPress, DEV.to, Medium, Substack, Coder Legion, Open Mind Culture, and others web app offering to publish arbitrary lengthy user generated content either in HTML, markdown or rich text format.
+- **Word Count Tracking**: Displays current word count with visual indicator
+  - ✓ Green check: 1000-2500 words (optimal range)
+  - ✗ Red cross: Outside optimal range
 
-Proof of concept / predecessor: [wp-content-stats-meta-box](https://github.com/openmindculture/wp-content-stats-meta-box), a simple plugin to analyze WP blog drafts on the go. Yoast SEO and Voyant might be additional inspirations while still trying to keep the service lightweight and unobtrusive.
+- **External Link Verification**: Checks for educational links
+  - Detects Wikipedia links
+  - Detects .edu domain links
+  - ✓ Green check: At least one qualifying link found
+  - ✗ Red cross: No qualifying links
 
-## TODO
+- **Auto-Update**: Metrics update automatically
+  - Debounced updates while typing (1 second delay)
+  - Interval updates every 30 seconds
+  - MutationObserver for link changes
 
-- [ ] #1 [Architecture, Purpose, Requirements](https://github.com/openmindculture/blog-draft-audit-chrome-extension/issues/1)
-- [ ] #2 [Mozilla Firefox Extension with the same functionality](https://github.com/openmindculture/blog-draft-audit-chrome-extension/issues/2)
-- [ ] build a simple MVP proof of concept extension and publish it in the Chrome Web Store
+## Installation
+
+1. Download or clone all extension files to a folder on your computer
+
+2. Open Chrome and navigate to `chrome://extensions/`
+
+3. Enable "Developer mode" (toggle in the top-right corner)
+
+4. Click "Load unpacked"
+
+5. Select the folder containing the extension files
+
+6. The extension should now appear in your extensions list
+
+## Usage
+
+1. Navigate to any Substack post editor (e.g., `https://yoursubstack.substack.com/publish/post/...`)
+
+2. Click the Substack Post Analyzer extension icon in your Chrome toolbar
+
+3. Click "Activate Analyzer" in the popup
+
+4. A floating panel will appear on the right side of your screen showing:
+   - Current word count
+   - Link verification status
+   - Visual indicators (✓ or ✗)
+
+5. Continue writing - the metrics will update automatically as you type
+
+6. To close the panel, click the × button or use "Deactivate" in the popup
+
+## Files Included
+
+- `manifest.json` - Extension configuration
+- `content.js` - Main analyzer logic
+- `popup.html` - Extension popup interface
+- `popup.js` - Popup functionality
+- `icon16.png`, `icon48.png`, `icon128.png` - Extension icons
 
 ## Technical Details
 
-Blog Draft Audit Chrome Extension is a browser extension with a script to check a text field content,
-- configure and/or detect likely content form field
-- preconfigured content locations for wordpress post editor both in Gutenberg block editor and in WordPres classic mode, and substack, and medium, and DEV.to post authoring,
-- option to check on button press
-- optionally checking must be debounced after content changed,
--  and display checklist and points like a password checker or Yoast SEO score
--  if matches above criteria.
-- Settings: Specify our beliefs and mission by simple string matching respecing post language.
-- Beyond checking debounced while writing, optionally add buttons to submit to zerogpt, voyant tools etc. The submission URLs might be editable in settings.
-- Supported source formats:
-    - plain text
-    - markdown
-    - HTML
-    - rich text
+### Word Count
+- Counts all words in the editor
+- Removes extra whitespace
+- Target range: 1000-2500 words
 
-Source code preferably in TypeScript with strict linting and a very simple local build step using tsc.
-Editable match strings in extension settings.
-No use of external services except for optional submission to configured external validators.
+### Link Detection
+- Searches for `<a href>` tags in the editor
+- Filters for http/https links only
+- Checks for:
+  - `wikipedia.org` in URL
+  - `.edu` in URL
+
+### Update Strategy
+- **Debounced on change**: 1 second delay after typing stops
+- **Interval update**: Every 30 seconds regardless of activity
+- **Mutation observer**: Detects DOM changes (useful for link insertions)
+
+## Browser Compatibility
+
+- Chrome (Manifest V3)
+- Edge (Chromium-based)
+- Other Chromium browsers
+
+## Privacy
+
+This extension:
+- Only runs on Substack domains
+- Does not collect or transmit any data
+- Works completely offline
+- Does not require any external permissions beyond accessing the Substack page
+
+## Troubleshooting
+
+**Panel doesn't appear:**
+- Make sure you're on a Substack editor page
+- Try refreshing the page and activating again
+- Check that the extension is enabled in chrome://extensions/
+
+**Metrics not updating:**
+- The extension looks for common editor selectors
+- If Substack changes their editor structure, it may need updating
+- Try deactivating and reactivating the extension
+
+**Can't find the extension icon:**
+- Click the puzzle piece icon in Chrome toolbar
+- Pin the Substack Post Analyzer for easy access
+
+## Future Enhancements
+
+Possible additions:
+- Readability score
+- Estimated reading time
+- Image count
+- Custom word count ranges
+- Export analytics
+- Dark mode support
+
+## License
+
+Free to use and modify for personal or commercial purposes.

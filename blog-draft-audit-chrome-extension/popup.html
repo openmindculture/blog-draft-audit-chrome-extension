@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 300px;
+      padding: 0;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #FF6719 0%, #FF8C42 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      margin: 5px 0 0 0;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    button {
+      background: #FF6719;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #E55A15;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    button.secondary {
+      background: #6b7280;
+    }
+
+    button.secondary:hover {
+      background: #4b5563;
+    }
+
+    .status {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f3f4f6;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 13px;
+      color: #4b5563;
+    }
+
+    .status.active {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .info {
+      margin-top: 15px;
+      padding: 10px;
+      background: #eff6ff;
+      border-left: 3px solid #3b82f6;
+      font-size: 12px;
+      color: #1e40af;
+      line-height: 1.5;
+    }
+
+    .error {
+      margin-top: 15px;
+      padding: 10px;
+      background: #fee2e2;
+      border-left: 3px solid #ef4444;
+      font-size: 12px;
+      color: #991b1b;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📊 Substack Post Analyzer</h1>
+    <p class="subtitle">Track your post metrics</p>
+  </div>
+
+  <div class="content">
+    <div class="button-container">
+      <button id="activateBtn">Activate Analyzer</button>
+      <button id="deactivateBtn" class="secondary">Deactivate</button>
+    </div>
+
+    <div id="status" class="status">
+      Status: Inactive
+    </div>
+
+    <div class="info">
+      <strong>How it works:</strong><br>
+      • Click "Activate" to start analyzing<br>
+      • A panel will appear on your Substack editor<br>
+      • Updates automatically as you type<br>
+      • Target: 1000-2500 words<br>
+      • Need: Wikipedia or .edu link
+    </div>
+
+    <div id="error" style="display: none;"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
