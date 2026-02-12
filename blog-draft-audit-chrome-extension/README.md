@@ -19,6 +19,14 @@ A Chrome extension that helps you analyze your Substack post drafts with real-ti
   - Interval updates every 30 seconds
   - MutationObserver for link changes
 
+### Disclaimer, Privacy and Security
+
+This software is provided for free "as is" without any warranty. Use at your own risk! According to an automated GitHub Copilot security audit, this is a privacy-respecting, secure extension, safe to use, that conforms to the [Chrome Extension Security Best Practices](https://developer.chrome.com/docs/extensions/mv3/security/).
+
+### Issues and Contribution
+
+Source code, issues and bug tracker are on GitHub at [openmindculture/blog-draft-audit-chrome-extension](https://github.com/openmindculture/blog-draft-audit-chrome-extension), feel welcome to open pull requests to improve this plugin!
+
 ## Usage
 
 1. Navigate to any Substack post editor (e.g., `https://yoursubstack.substack.com/publish/post/...`)
