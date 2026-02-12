@@ -19,20 +19,6 @@ A Chrome extension that helps you analyze your Substack post drafts with real-ti
   - Interval updates every 30 seconds
   - MutationObserver for link changes
 
-## Installation
-
-1. Download or clone all extension files to a folder on your computer
-
-2. Open Chrome and navigate to `chrome://extensions/`
-
-3. Enable "Developer mode" (toggle in the top-right corner)
-
-4. Click "Load unpacked"
-
-5. Select the folder containing the extension files
-
-6. The extension should now appear in your extensions list
-
 ## Usage
 
 1. Navigate to any Substack post editor (e.g., `https://yoursubstack.substack.com/publish/post/...`)

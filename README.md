@@ -14,6 +14,20 @@ Proof of concept / predecessor: [wp-content-stats-meta-box](https://github.com/o
 - [ ] #2 [Mozilla Firefox Extension with the same functionality](https://github.com/openmindculture/blog-draft-audit-chrome-extension/issues/2)
 - [ ] build a simple MVP proof of concept extension and publish it in the Chrome Web Store
 
+## Development and Testing Installation
+
+1. Download or clone all extension files to a folder on your computer
+
+2. Open Chrome and navigate to `chrome://extensions/`
+
+3. Enable "Developer mode" (toggle in the top-right corner)
+
+4. Click "Load unpacked"
+
+5. Select the folder containing the extension files
+
+6. The extension should now appear in your extensions list
+
 ## Technical Details
 
 Blog Draft Audit Chrome Extension is a browser extension with a script to check a text field content,
@@ -34,3 +48,9 @@ Blog Draft Audit Chrome Extension is a browser extension with a script to check 
 Source code preferably in TypeScript with strict linting and a very simple local build step using tsc.
 Editable match strings in extension settings.
 No use of external services except for optional submission to configured external validators.
+
+## Screenshots
+
+![screenshot](./screenshot.png)
+
+Working draft of an initial MVP version used while writing a new substack article.
