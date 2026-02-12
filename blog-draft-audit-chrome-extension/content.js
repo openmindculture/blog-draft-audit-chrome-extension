@@ -233,7 +233,7 @@
       } else if (linkInfo.hasEdu) {
         linkCheckEl.textContent = '.edu found';
       } else if (linkInfo.total > 0) {
-        linkCheckEl.textContent = `${linkInfo.total} link(s), none qualified`;
+        linkCheckEl.textContent = linkInfo.total + ' link(s), none qualified';
       } else {
         linkCheckEl.textContent = 'No links found';
       }
