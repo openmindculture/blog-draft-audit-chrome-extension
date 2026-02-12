@@ -11,27 +11,82 @@
   function createStatsPanel() {
     const panel = document.createElement('div');
     panel.id = 'substack-analyzer-panel';
-    panel.innerHTML = `
-      <div class="analyzer-header">
-        <span>📊 Post Analyzer</span>
-        <button id="analyzer-close" title="Close">×</button>
-      </div>
-      <div class="analyzer-content">
-        <div class="metric-row">
-          <span class="metric-label">Word Count:</span>
-          <span id="word-count" class="metric-value">—</span>
-          <span id="word-count-indicator" class="indicator"></span>
-        </div>
-        <div class="metric-row">
-          <span class="metric-label">External Links:</span>
-          <span id="link-check" class="metric-value">—</span>
-          <span id="link-indicator" class="indicator"></span>
-        </div>
-        <div class="metric-info">
-          <small>Target: 1000-2500 words | Need: Wikipedia or .edu link</small>
-        </div>
-      </div>
-    `;
+
+    // Create header
+    const header = document.createElement('div');
+    header.className = 'analyzer-header';
+
+    const headerText = document.createElement('span');
+    headerText.textContent = '📊 Post Analyzer';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.id = 'analyzer-close';
+    closeBtn.title = 'Close';
+    closeBtn.textContent = '×';
+
+    header.appendChild(headerText);
+    header.appendChild(closeBtn);
+
+    // Create content container
+    const content = document.createElement('div');
+    content.className = 'analyzer-content';
+
+    // Word count row
+    const wordRow = document.createElement('div');
+    wordRow.className = 'metric-row';
+
+    const wordLabel = document.createElement('span');
+    wordLabel.className = 'metric-label';
+    wordLabel.textContent = 'Word Count:';
+
+    const wordValue = document.createElement('span');
+    wordValue.id = 'word-count';
+    wordValue.className = 'metric-value';
+    wordValue.textContent = '—';
+
+    const wordIndicator = document.createElement('span');
+    wordIndicator.id = 'word-count-indicator';
+    wordIndicator.className = 'indicator';
+
+    wordRow.appendChild(wordLabel);
+    wordRow.appendChild(wordValue);
+    wordRow.appendChild(wordIndicator);
+
+    // Link check row
+    const linkRow = document.createElement('div');
+    linkRow.className = 'metric-row';
+
+    const linkLabel = document.createElement('span');
+    linkLabel.className = 'metric-label';
+    linkLabel.textContent = 'External Links:';
+
+    const linkValue = document.createElement('span');
+    linkValue.id = 'link-check';
+    linkValue.className = 'metric-value';
+    linkValue.textContent = '—';
+
+    const linkIndicator = document.createElement('span');
+    linkIndicator.id = 'link-indicator';
+    linkIndicator.className = 'indicator';
+
+    linkRow.appendChild(linkLabel);
+    linkRow.appendChild(linkValue);
+    linkRow.appendChild(linkIndicator);
+
+    // Info text
+    const info = document.createElement('div');
+    info.className = 'metric-info';
+    const infoText = document.createElement('small');
+    infoText.textContent = 'Target: 1000-2500 words | Need: Wikipedia or .edu link';
+    info.appendChild(infoText);
+
+    // Assemble everything
+    content.appendChild(wordRow);
+    content.appendChild(linkRow);
+    content.appendChild(info);
+
+    panel.appendChild(header);
+    panel.appendChild(content);
 
     // Add styles
     const style = document.createElement('style');
@@ -190,7 +245,7 @@
   // Update the stats display
   function updateStats() {
     const editor = getEditorContent();
-    
+
     if (!editor) {
       console.error('Substack editor not found');
       return;
@@ -206,10 +261,10 @@
     // Update word count
     const wordCountEl = document.getElementById('word-count');
     const wordCountIndicator = document.getElementById('word-count-indicator');
-    
+
     if (wordCountEl) {
       wordCountEl.textContent = wordCount.toLocaleString();
-      
+
       if (wordCount >= 1000 && wordCount <= 2500) {
         wordCountIndicator.textContent = '✓';
         wordCountIndicator.className = 'indicator check';
@@ -222,10 +277,11 @@
     // Update link check
     const linkCheckEl = document.getElementById('link-check');
     const linkIndicator = document.getElementById('link-indicator');
-    
+
     if (linkCheckEl) {
       const hasRequiredLink = linkInfo.hasWikipedia || linkInfo.hasEdu;
-      
+
+      // Always use textContent to prevent any potential XSS
       if (linkInfo.hasWikipedia && linkInfo.hasEdu) {
         linkCheckEl.textContent = 'Wikipedia & .edu';
       } else if (linkInfo.hasWikipedia) {
@@ -280,7 +336,7 @@
     if (editor) {
       // Listen for input events
       editor.addEventListener('input', debouncedUpdate);
-      
+
       // Also listen for changes in the DOM (for link additions/removals)
       const observer = new MutationObserver(debouncedUpdate);
       observer.observe(editor, {
@@ -333,6 +389,27 @@
 
   // Listen for messages from popup
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    // Validate sender is from our own extension
+    if (sender.id !== chrome.runtime.id) {
+      console.warn('Message from unknown sender:', sender.id);
+      sendResponse({ error: 'Invalid sender' });
+      return true;
+    }
+
+    // Validate message structure
+    if (!request || typeof request.action !== 'string') {
+      sendResponse({ error: 'Invalid message format' });
+      return true;
+    }
+
+    // Whitelist allowed actions
+    const allowedActions = ['activate', 'deactivate', 'toggle', 'getStatus'];
+    if (!allowedActions.includes(request.action)) {
+      console.warn('Unknown action:', request.action);
+      sendResponse({ error: 'Unknown action' });
+      return true;
+    }
+
     if (request.action === 'activate') {
       activate();
       sendResponse({ status: 'activated' });
