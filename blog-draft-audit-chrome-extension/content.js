@@ -173,7 +173,7 @@
 
     links.forEach(link => {
       const href = link.getAttribute('href');
-      if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+      if (href && href.startsWith('https://')) {
         total++;
         if (href.includes('wikipedia.org')) {
           hasWikipedia = true;
@@ -192,7 +192,7 @@
     const editor = getEditorContent();
     
     if (!editor) {
-      console.log('Substack editor not found');
+      console.error('Substack editor not found');
       return;
     }
 
