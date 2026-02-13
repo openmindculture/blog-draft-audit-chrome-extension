@@ -1,3 +1,13 @@
+// Use webextension-polyfill for cross-browser compatibility
+import browser from 'webextension-polyfill';
+
+// Your shared logic here
+browser.runtime.onMessage.addListener((message) => {
+ // console.log('Message received:', message);
+});
+
+// TODO refactor
+
 // Popup script for Substack Post Analyzer
 
 document.addEventListener('DOMContentLoaded', async () => {
