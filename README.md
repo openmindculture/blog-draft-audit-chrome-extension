@@ -54,3 +54,11 @@ No use of external services except for optional submission to configured externa
 ![screenshot](./screenshot.png)
 
 Working draft of an initial MVP version used while writing a new substack article.
+
+## Best Practice Docs, Sources, Credits
+
+- [MDN: Porting a Google Chrome extension](https://extensionworkshop.com/documentation/develop/porting-a-google-chrome-extension/)
+- cross-browser approach assisted by Mistral (le Chat) AI
+- Substack Chrome extension PoC assisted by Claude AI
+- reusing [WordPress plugin logic](https://github.com/openmindculture/wp-content-stats-meta-box) based on a PoC also asissted by Claude AI
+- original concept by web developer Ingo Steinke (openmindculture) based on content creation SEO best practices research for Open Mind Culture 
