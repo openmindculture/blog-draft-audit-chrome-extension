@@ -1,6 +1,6 @@
-# Blog Draft Audit Chrome Extension
+# Blog Draft Audit Browser Extension
 
-This Chrome extension helps content creators and editors improve their blog drafts by integrating an audit checklist alongside any blogging platform's interface that can check in real time while writing or on pressing a button. Configurable checklist items can include SEO best practices, readability checks, number of links and signals. Optionally we can specify external auditing services to review the draft content after actively submitting it for review in a new browser tab or window.
+This browser extension helps content creators and editors improve their blog drafts by integrating an audit checklist alongside any blogging platform's interface that can check in real time while writing or on pressing a button. Configurable checklist items can include SEO best practices, readability checks, number of links and signals. Optionally we can specify external auditing services to review the draft content after actively submitting it for review in a new browser tab or window. An initial release is provided for Chrome/Chromium and Firefox browsers.
 
 This is a work in progress, provided as open source software without any warranty. Use at your own risk. Feel free to suggest features, open issues and pull requests on GitHub.
 
